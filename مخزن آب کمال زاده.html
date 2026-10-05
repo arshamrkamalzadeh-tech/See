@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مخزن آب کمال زاده</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;800;900&display=swap">
+<style>
+:root{--sky:#18B4F4;--sky-d:#0A7FB8;--ink:#06283D;--bg:#F2FAFF;--card:#fff;--line:#BFE6FA;--soft:#DDF3FE;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8F6FF;--bg:#04141F;--card:#08283A;--line:#0F4663;--soft:#0B3550}}
+:root[data-theme="dark"]{--ink:#E8F6FF;--bg:#04141F;--card:#08283A;--line:#0F4663;--soft:#0B3550}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.7}
+.hero{background:var(--sky);color:#04283D;padding:40px 20px 64px;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)}
+.brand{font-weight:900;font-size:20px;margin:0 0 18px}
+.hero h1{font-size:clamp(40px,11vw,88px);font-weight:900;line-height:1.05;margin:0 0 14px}
+.hero p{font-size:clamp(17px,3.6vw,22px);font-weight:800;max-width:620px;margin:0 0 22px}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badges span{background:#04283D;color:#fff;font-weight:800;padding:8px 16px;border-radius:999px;font-size:15px}
+main{max-width:1000px;margin:0 auto;padding:16px 16px 40px}
+h2{font-size:clamp(28px,6vw,44px);font-weight:900;margin:0 0 18px;border-right:10px solid var(--sky);padding-right:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.cat{all:unset;cursor:pointer;display:block;background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden}
+.cat:focus-visible,.vol:focus-visible,.back:focus-visible{outline:4px solid var(--sky-d);outline-offset:2px}
+.cat img{width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--soft);display:block}
+.cat span{display:block;background:var(--ink);color:var(--bg);font-weight:900;font-size:20px;padding:10px 16px;text-align:center}
+.cat:hover span{background:var(--sky);color:#04283D}
+.back{all:unset;cursor:pointer;background:var(--ink);color:var(--bg);font-weight:800;padding:8px 18px;border-radius:999px;display:inline-block;margin:0 0 16px}
+.pic{width:100%;max-height:340px;object-fit:contain;background:var(--soft);border:3px solid var(--ink);border-radius:20px;display:block}
+.sub{font-weight:800;margin:20px 0 10px;font-size:18px}
+.vols{display:flex;flex-wrap:wrap;gap:8px}
+.vol{all:unset;cursor:pointer;background:var(--soft);color:var(--ink);border:3px solid var(--sky);padding:4px 16px;border-radius:10px;font-weight:900;font-size:17px}
+.vol[aria-pressed="true"]{background:var(--sky);color:#04283D;border-color:var(--ink)}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:8px}
+.spec div{background:var(--ink);color:var(--bg);border-radius:16px;padding:14px 10px;text-align:center}
+.spec small{display:block;font-size:14px;opacity:.85}
+.spec b{font-size:34px;font-weight:900;color:var(--sky);line-height:1.3}
+.spec em{font-style:normal;font-size:14px}
+.note{opacity:.8;font-weight:800}
+.why{margin-top:48px;background:var(--ink);color:var(--bg);border-radius:24px;padding:26px 22px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.why h3{margin:0;color:var(--sky);font-size:22px;font-weight:900}
+.why p{margin:4px 0 0;font-size:15px}
+.cta{margin-top:32px;background:var(--sky);color:#04283D;border:3px solid var(--ink);border-radius:24px;padding:24px 20px;text-align:center}
+.cta h3{margin:0 0 4px;font-size:clamp(22px,5vw,32px);font-weight:900}
+.cta .tel{font-size:clamp(28px,8vw,48px);font-weight:900;direction:ltr;margin:4px 0 14px}
+.cta a{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:900;font-size:20px;padding:12px 36px;border-radius:999px}
+.cta a{margin:6px 4px 10px}
+.cta .addr{margin:16px 0 0;font-weight:900;font-size:18px}
+.cta a:focus-visible{outline:4px solid #04283D;outline-offset:3px}
+.calcbox{margin-top:32px;background:var(--ink);color:var(--bg);border-radius:24px;padding:24px 20px;text-align:center}
+.calcbox h3{margin:0 0 4px;font-size:clamp(22px,5vw,32px);font-weight:900;color:var(--sky)}
+.calcbox p{margin:0 0 14px;font-weight:800}
+.go{all:unset;cursor:pointer;display:inline-block;background:var(--sky);color:#04283D;font-weight:900;font-size:20px;padding:12px 36px;border-radius:999px}
+.go:focus-visible{outline:4px solid var(--bg);outline-offset:3px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0 16px}
+.fields label{font-weight:800;display:block}
+.fields input{width:100%;margin-top:4px;font:inherit;font-weight:900;font-size:22px;text-align:center;padding:10px;border:3px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink)}
+.fields input:focus-visible{outline:4px solid var(--sky);outline-offset:2px}
+.best{background:var(--sky);color:#04283D;border:3px solid var(--ink);border-radius:20px;padding:18px;margin-top:20px}
+.best h3{margin:0;font-size:26px;font-weight:900}
+.best .big{font-size:42px;font-weight:900;line-height:1.3}
+.alt{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--card);border:3px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:10px;font-weight:800}
+.cat,.back,.vol,.go,.cta a{font-weight:900;border:3px solid #04283D;background-image:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 55%);box-shadow:0 6px 0 rgba(4,40,61,.65),0 10px 14px rgba(0,0,0,.25);transform:translateY(0);transition:transform .08s,box-shadow .08s;-webkit-tap-highlight-color:transparent}
+.back{font-size:18px;padding:8px 22px}
+.go{font-size:22px;padding:14px 40px}
+.cta a{font-size:22px;padding:14px 42px}
+.vol{font-size:18px;padding:6px 18px;box-shadow:0 5px 0 rgba(4,40,61,.65),0 8px 10px rgba(0,0,0,.2)}
+.cat{box-shadow:0 8px 0 rgba(4,40,61,.65),0 14px 18px rgba(0,0,0,.28);margin-bottom:8px}
+.cat span{font-size:22px}
+.cat:active,.back:active,.go:active,.cta a:active{transform:translateY(5px);box-shadow:0 1px 0 rgba(4,40,61,.65),0 2px 4px rgba(0,0,0,.25)}
+.vol:active,.vol[aria-pressed="true"]{transform:translateY(4px);box-shadow:0 1px 0 rgba(4,40,61,.65),0 2px 4px rgba(0,0,0,.2)}
+.vol[aria-pressed="true"]{background-image:linear-gradient(180deg,rgba(0,0,0,.12),rgba(255,255,255,.15))}
+@media (prefers-reduced-motion:reduce){.cat,.back,.vol,.go,.cta a{transition:none}}
+footer{text-align:center;padding:22px;font-weight:900;background:var(--sky);color:#04283D}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<footer>مخزن آب کمال زاده</footer>
+<script>
+var D=[
+{id:"asan",t:"آسان رو",img:"https://cdn.imgurl.ir/uploads/x173771_IMG_20261004_212550.jpg",v:[[500,123,58,116],[1000,135,60,183,"دو درب"],[1500,160,70,200,"دو درب"]]},
+{id:"vert",t:"عمودی",img:"https://cdn.imgurl.ir/uploads/p422615_IMG_20261004_212933.jpg.webp",d:1,v:[[100,47,0,73],[200,59,0,90],[300,71,0,92],[500,87,0,102],[800,94,0,130],[1000,106,0,136],[1500,117,0,155],[2000,139,0,155],[3000,145,0,191],[4000,164,0,217],[5000,182,0,226],[6000,205,0,215],[8000,206,0,280],[10000,208,0,300],[15000,270,0,285],[20000,270,0,370]]},
+{id:"tall",t:"عمودی بلند",img:"https://cdn.imgurl.ir/uploads/s422264_IMG_20261004_212559.jpg.webp",d:1,v:[[200,54,0,107],[300,57,0,140],[350,58,0,165],[500,65,0,173],[650,68,0,210],[800,80,0,182],[1000,80,0,224],[1500,100,0,219],[2000,118,0,219]]},
+{id:"cube",t:"مکعبی",img:"https://cdn.imgurl.ir/uploads/x368493_IMG_20261004_212603.jpg.webp",v:[[300,123,69,55],[500,155,81,60],[1000,183,95,81],[2000,233,122,86]]},
+{id:"vcube",t:"مکعبی عمودی",img:"https://cdn.imgurl.ir/uploads/h040031_IMG_20261004_213754.jpg.webp",v:[[150,50,37,95],[250,60,39,120],[350,51,51,180],[500,"61.5","61.5",174]]},
+{id:"horz",t:"افقی",img:"https://cdn.imgurl.ir/uploads/r606880_IMG_20261004_212606.jpg.webp",v:[[100,75,42,60],[200,84,56,70],[300,102,69,83],[500,116,80,92],[800,147,91,103],[1000,149,103,113],[1500,194,107,117],[2000,196,126,134],[2500,229,129,140],[3000,230,138,150],[5000,250,180,191]]},
+{id:"stair",t:"زیر پله",img:"https://cdn.imgurl.ir/uploads/f525764_IMG_20261004_212608.jpg.webp",v:[[300,115,60,75],[500,120,85,91],[800,184,87,102],[1000,165,98,110],[1500,195,113,120]]}
+];
+var ph="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'><rect width='160' height='120' fill='#DDF3FE'/><path d='M50 40h60v45q0 8-8 8H58q-8 0-8-8z' fill='#18B4F4'/><rect x='62' y='30' width='36' height='10' rx='3' fill='#0A7FB8'/></svg>");
+var fa=function(x){return String(x).replace(/\d/g,function(d){return "۰۱۲۳۴۵۶۷۸۹"[d]}).replace(".","٫")};
+var app=document.getElementById("app"),sel=0;
+function img(s,c){return '<img class="'+c+'" src="'+s.img+'" alt="مخزن '+s.t+'" onerror="this.onerror=null;this.src=\''+ph+'\'">'}
+function cta(){return '<div class="cta"><h3>برای اطلاع از قیمت تماس بگیرید</h3><div class="tel">09123603403</div><a href="tel:09123603403">تماس با ما</a> <a class="ig" href="https://instagram.com/makhzan_kamalzadeh" target="_blank" rel="noopener">اینستاگرام ما</a><a class="map" href="https://nshn.ir/077bv56hyxvQXe" target="_blank" rel="noopener">مسیریابی تا فروشگاه</a><p class="addr">آدرس: کرج، جاده قزلحصار، نبش ۱۶ متری سعدی</p></div>'}
+function num(v){return parseFloat(String(v).replace(/[۰-۹]/g,function(d){return "۰۱۲۳۴۵۶۷۸۹".indexOf(d)}).replace("٫","."))}
+function dim(s,r){return (s.d?'قطر '+fa(r[1]):'طول '+fa(r[1])+' × عرض '+fa(r[2]))+' × ارتفاع '+fa(r[3])+' سانتی‌متر'}
+function find(L,W,H){var res=[];
+D.forEach(function(s){var best=null;
+s.v.forEach(function(r){if(r.length<2)return;
+var l=r[1],w=s.d?r[1]:r[2],ok=r[3]<=H&&((l<=L&&w<=W)||(l<=W&&w<=L));
+if(ok&&(!best||r[0]>best[0]))best=r});
+if(best)res.push({s:s,r:best})});
+return res.sort(function(a,b){return b.r[0]-a.r[0]})}
+function calc(){
+app.innerHTML='<main><button class="back" id="bk">بازگشت</button><h2>انتخاب بهترین مخزن</h2><p class="note">ابعاد جایی که می‌خواهید مخزن را بگذارید بنویسید (به سانتی‌متر).</p>'+
+'<div class="fields"><label>طول مکان<input id="cl" inputmode="numeric" placeholder="مثلاً ۲۰۰"></label><label>عرض مکان<input id="cw" inputmode="numeric" placeholder="مثلاً ۱۵۰"></label><label>ارتفاع مکان<input id="ch" inputmode="numeric" placeholder="مثلاً ۱۸۰"></label></div>'+
+'<button class="go" id="go">پیشنهاد بده</button><div id="out" aria-live="polite"></div>'+cta()+'</main>';
+document.getElementById("bk").onclick=function(){location.hash="#/"};
+document.getElementById("go").onclick=function(){
+var L=num(cl.value),W=num(cw.value),H=num(ch.value),o=document.getElementById("out");
+if(!(L>0&&W>0&&H>0)){o.innerHTML='<p class="note">هر سه عدد طول، عرض و ارتفاع را وارد کنید.</p>';return}
+var f=find(L,W,H);
+if(!f.length){o.innerHTML='<p class="note">در این ابعاد مخزنی جا نمی‌شود. برای راهنمایی تماس بگیرید.</p>';return}
+var b=f[0];
+o.innerHTML='<div class="best"><h3>بهترین پیشنهاد: مخزن '+b.s.t+'</h3><div class="big">'+fa(b.r[0])+' لیتر</div><div>'+dim(b.s,b.r)+'</div></div>'+
+(f.length>1?'<p class="sub">گزینه‌های دیگر</p>'+f.slice(1).map(function(x){return '<div class="alt"><span>'+x.s.t+' — '+fa(x.r[0])+' لیتر</span><span>'+dim(x.s,x.r)+'</span></div>'}).join(""):"")+
+'<p class="note">برای جا شدن راحت، فضای نصب و رفت‌وآمد را هم در نظر بگیرید.</p>'}}
+function home(){
+app.innerHTML='<header class="hero"><p class="brand">مخزن آب کمال زاده</p><h1>مخزن آب<br>مطمئن و ماندگار</h1><p>انواع منبع آب پلی‌اتیلن. مدل مورد نظر را انتخاب کنید.</p><div class="badges"><span>سه لایه</span><span>ضد جلبک</span><span>۱۲ سال گارانتی تعویض</span><span>دارای سیب سلامت</span><span>استاندارد</span></div></header><main><div class="calcbox" style="margin:0 0 32px"><h3>مخزن مناسب مکان شما کدام است؟</h3><p>طول، عرض و ارتفاع جا را بنویسید تا بهترین مخزن را پیشنهاد بدهیم.</p><button class="go" id="gc">ماشین‌حساب انتخاب مخزن</button></div><h2>انواع مخزن</h2><div class="grid">'+
+D.map(function(s){return '<button class="cat" data-id="'+s.id+'">'+img(s,"")+'<span>'+s.t+'</span></button>'}).join("")+
+'</div>'+cta()+'<div class="why"><div><h3>سه لایه</h3><p>ساختار سه‌لایه برای استحکام و عمر بیشتر.</p></div><div><h3>ضد جلبک</h3><p>جلوگیری از رشد جلبک در آب مخزن.</p></div><div><h3>۱۲ سال گارانتی</h3><p>همه منبع‌ها گارانتی تعویض ۱۲ ساله دارند.</p></div><div><h3>سیب سلامت</h3><p>مناسب نگهداری آب آشامیدنی.</p></div><div><h3>استاندارد</h3><p>تولید طبق استاندارد.</p></div></div></main>';
+app.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){location.hash="#/"+b.dataset.id}});
+document.getElementById("gc").onclick=function(){location.hash="#/calc"};
+}
+function spec(s){
+var r=s.v[sel],o="";
+if(r.length<2)return '<p class="note">ابعاد این مدل به‌زودی اضافه می‌شود.</p>';
+var b=function(l,x){return '<div><small>'+l+'</small><b>'+fa(x)+'</b> <em>سانتی‌متر</em></div>'};
+o+=b(s.d?"قطر":"طول",r[1]);
+if(!s.d)o+=b("عرض",r[2]);
+o+=b("ارتفاع با درب",r[3]);
+return '<div class="spec">'+o+'</div>';
+}
+function detail(s){
+app.innerHTML='<main><button class="back" id="bk">بازگشت</button><h2>'+s.t+'</h2>'+img(s,"pic")+
+'<p class="sub">حجم مخزن را انتخاب کنید</p><div class="vols">'+
+s.v.map(function(r,i){return '<button class="vol" aria-pressed="'+(i===sel)+'" data-i="'+i+'">'+fa(r[0])+' لیتر'+(r[4]?' ('+r[4]+')':'')+'</button>'}).join("")+
+'</div><p class="sub">ابعاد مخزن '+fa(s.v[sel][0])+' لیتری'+(s.v[sel][4]?' ('+s.v[sel][4]+')':'')+'</p>'+spec(s)+cta()+'</main>';
+document.getElementById("bk").onclick=function(){location.hash="#/"};
+app.querySelectorAll(".vol").forEach(function(b){b.onclick=function(){sel=+b.dataset.i;detail(s)}});
+}
+function route(){
+var id=location.hash.replace("#/",""),s=D.filter(function(x){return x.id===id})[0];
+sel=0;window.scrollTo(0,0);
+if(id==="calc"){calc();return}
+s?detail(s):home();
+}
+window.onhashchange=route;route();
+</script>
+</body>
+</html>

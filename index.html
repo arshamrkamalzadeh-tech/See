@@ -22,7 +22,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn,Tahoma
 .menu{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding:2px 2px 6px}
 .pill{color:var(--ink);text-decoration:none;font-weight:800;font-size:14px;white-space:nowrap;padding:5px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 .pill:hover,.pill:focus-visible{background:var(--sky);color:#04283D;outline:none}
-.banner{margin:18px auto 0;max-width:968px;border-radius:26px;background:linear-gradient(135deg,#0B2236,#0E4A6E 55%,#18B4F4);color:#fff;padding:24px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.banner{margin:18px auto 0;max-width:968px;min-height:198px;border-radius:26px;background:url("https://cdn.imgurl.ir/uploads/o160382_IMG_20261006_153647.jpg") center/cover no-repeat,linear-gradient(135deg,#0B2236,#0E4A6E 55%,#18B4F4);padding:24px 20px;display:flex;align-items:center;justify-content:flex-end}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .banner h1{margin:0 0 6px;font-size:clamp(24px,6vw,42px);font-weight:900;line-height:1.35}
 .banner p{margin:0;font-weight:800;font-size:15px;opacity:.95}
 .banner .lg{width:120px;height:104px;border-radius:22px;border:2px solid rgba(255,255,255,.35);flex:none}
@@ -103,7 +104,7 @@ footer small{opacity:.75}
 </head>
 <body>
 <header class="top"><div class="w"><div class="row"><a class="brand" href="#/"><img class="lg" id="l1" alt="لوگوی مخزن آب کمال زاده"><span>مخزن آب کمال زاده</span></a><div id="st" class="st" role="status" hidden></div></div>
-<nav class="menu"><a class="pill" href="#/">صفحه اصلی</a><a class="pill" href="#/calc">ماشین‌حساب انتخاب مخزن</a><a class="pill" href="#/acc">فیتینگ و شناور</a></nav></div></header>
+<nav class="menu"><a class="pill" href="#/">صفحه اصلی</a><a class="pill" href="#/tanks">مخازن</a><a class="pill" href="#/calc">ماشین‌حساب انتخاب مخزن</a><a class="pill" href="#/acc">فیتینگ و شناور</a></nav></div></header>
 <div id="app" class="w"></div>
 <footer><img class="lg" id="l2" alt="لوگوی مخزن آب کمال زاده"><p>مخزن آب کمال زاده</p><p>کرج، جاده قزلحصار، نبش ۱۶ متری سعدی</p><small>کلیه حقوق برای مخزن آب کمال زاده محفوظ است.</small></footer>
 <script>
@@ -127,14 +128,19 @@ function cta(){return '<div class="card"><h3>جهت اطلاع از قیمت، �
 var IC={a:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',b:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>',c:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-2 5 2-1.5-7"/>'};
 function f(k,t){return '<div class="f"><svg viewBox="0 0 24 24">'+IC[k]+'</svg>'+t+'</div>'}
 var A=[{n:1,t:"فیتینگ‌ها",img:"https://cdn.imgurl.ir/uploads/a206725_IMG_20261006_150603.jpg",v:[2,2.5,3,4,5,6]},{n:1,t:"شناور برنجی",img:"https://cdn.imgurl.ir/uploads/t32092_IMG_20261006_150606.jpg",v:[2,2.5,3]}];
-function acc(){return '<div id="acc">'+sh("Fittings","فیتینگ‌ها و شناور برنجی")+'</div><div class="accs">'+A.map(function(a){return '<div class="acc">'+img(a,"")+'<h3>'+a.t+'</h3><p>اندازه‌های موجود</p><div class="chips">'+a.v.map(function(x){return '<b>'+fa(x)+'</b>'}).join("")+'</div></div>'}).join("")+'</div>'}
+function acc(){return '<div id="acc">'+sh("Fittings","فیتینگ‌ها و شناور برنجی")+'</div><div class="accs">'+A.map(function(a){return '<div class="acc">'+img(a,"")+'<h3>'+a.t+'</h3><p>سایزها</p><div class="chips">'+a.v.map(function(x){return '<b>'+fa(x)+'</b>'}).join("")+'</div></div>'}).join("")+'</div>'}
 function buy(){return sh("Ways to Buy","روش‌های خرید")+'<div class="accs"><div class="buy"><h3>خرید حضوری</h3><p>با مراجعه به فروشگاه در ساعت کاری ۹ صبح تا ۶ بعدازظهر، به نشانی کرج، جاده قزلحصار، نبش ۱۶ متری سعدی، مخزن مورد نظر خود را از نزدیک ببینید و خریداری کنید.</p><div class="btns"><a href="https://nshn.ir/077bv56hyxvQXe" target="_blank" rel="noopener">مسیریابی تا فروشگاه</a></div></div><div class="buy"><h3>خرید غیرحضوری</h3><p>بدون مراجعه به فروشگاه، از طریق تماس تلفنی یا پیام در اینستاگرام، مدل و حجم مورد نظر را سفارش دهید.</p><div class="btns"><a href="tel:09123603403">تماس با ما</a><a class="alt" href="https://instagram.com/makhzan_kamalzadeh" target="_blank" rel="noopener">اینستاگرام ما</a></div></div></div>'}
+function catGrid(){return '<div class="grid">'+D.map(function(s){return '<button class="cat" data-id="'+s.id+'">'+img(s,"")+'<span>'+s.t+'</span></button>'}).join("")+'</div>'}
+function tanksPage(){
+app.innerHTML='<button class="back" id="bk">بازگشت</button>'+sh("Water Tanks","انواع مخازن")+catGrid()+cta();
+gi("bk").onclick=function(){location.hash="#/"};
+app.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){location.hash="#/"+b.dataset.id}});
+}
 function home(){
-app.innerHTML='<div class="banner"><div><h1>مخزن آب سه‌لایه،<br>ضد جلبک و استاندارد</h1><p>۱۲ سال گارانتی تعویض · دارای سیب سلامت</p></div><img class="lg" src="'+LOGO+'" alt="لوگو"></div>'+
+app.innerHTML='<h1 class="sr">مخزن آب کمال زاده</h1><div class="banner"><img class="lg" src="'+LOGO+'" alt="لوگو"></div>'+
 '<div class="feat">'+f("a","۱۲ سال گارانتی تعویض")+f("b","سه لایه و ضد جلبک")+f("c","استاندارد و سیب سلامت")+'</div>'+
 '<div class="card"><h3>مخزن مناسب مکان شما کدام است؟</h3><p>لطفاً طول، عرض و ارتفاع مکان نصب را وارد نمایید تا مناسب‌ترین مخزن را به شما پیشنهاد دهیم.</p><button class="go" id="gc">ماشین‌حساب انتخاب مخزن</button></div>'+
-'<div id="cats">'+sh("Water Tank Categories","انواع مخازن")+'</div><div class="grid">'+
-D.map(function(s){return '<button class="cat" data-id="'+s.id+'">'+img(s,"")+'<span>'+s.t+'</span></button>'}).join("")+'</div>'+acc()+buy()+
+'<div id="cats">'+sh("Water Tank Categories","انواع مخازن")+'</div>'+catGrid()+acc()+buy()+
 cta()+
 '<div class="why"><img class="lg" src="'+LOGO+'" alt="لوگو"><p>مخازن آب پلی‌اتیلن سه‌لایه، ضد جلبک و مناسب نگهداری آب آشامیدنی؛ با ۱۲ سال گارانتی تعویض و نشان سیب سلامت.</p></div>'+
 '<div class="stats"><div class="stat"><b>۱۲ سال</b><span>گارانتی تعویض</span></div><div class="stat"><b>۳ لایه</b><span>ضد جلبک</span></div><div class="stat"><b>استاندارد</b><span>سیب سلامت</span></div></div>';
@@ -192,6 +198,7 @@ var id=location.hash.replace("#/",""),s=D.filter(function(x){return x.id===id})[
 sel=0;window.scrollTo(0,0);
 if(id==="calc"){calc();return}
 if(id==="acc"){accPage();return}
+if(id==="tanks"){tanksPage();return}
 if(s){detail(s);return}
 home();
 if(id==="cats")gi(id).scrollIntoView();

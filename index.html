@@ -142,6 +142,15 @@ footer small{opacity:.75}
 .fa li{margin-bottom:6px;text-align:justify}
 .fa img{display:block;width:calc(100% - 36px);height:auto;margin:4px 18px 18px;border-radius:16px}
 @media (prefers-reduced-motion:reduce){.ov,.drw,.fq svg,.fa{transition:none}}
+.rt{flex:1 1 auto;gap:6px}
+.burger{width:40px;height:40px;flex:none}
+.brand{white-space:normal;min-width:0;gap:6px;font-size:15px;line-height:1.35}
+.top .brand .lg{width:52px;height:46px;flex:none}
+.st{flex:none;font-size:12px;padding:3px 9px}
+a.nu{text-decoration:none}
+.top{position:sticky;top:0;z-index:80;transition:transform .3s ease}
+.top.hide{transform:translateY(-115%)}
+@media (prefers-reduced-motion:reduce){.top{transition:none}}
 </style>
 </head>
 <body>
@@ -167,7 +176,7 @@ var app=document.getElementById("app"),sel=0,gi=function(i){return document.getE
 gi("l1").src=LOGO;
 function img(s,c){return '<img class="'+c+'" src="'+s.img+'" alt="'+(s.n?'':'مخزن ')+s.t+'" onerror="this.onerror=null;this.src=\''+ph+'\'">'}
 function sh(en,t){return '<div class="sh"><i></i><small>'+en+'</small><h2>'+t+'</h2></div>'}
-function cta(){return '<div class="card"><h3>جهت اطلاع از قیمت، تماس بگیرید</h3><div class="tel"><span class="nm">کمال زاده</span><span class="nu">09123603403</span></div><div class="btns"><a href="tel:09123603403">تماس با ما</a><a class="alt" href="https://instagram.com/makhzan_kamalzadeh" target="_blank" rel="noopener">اینستاگرام ما</a></div><p class="info">ساعت کاری: ۹ صبح تا ۶ بعدازظهر</p><p class="info">آدرس: کرج، جاده قزلحصار، نبش ۱۶ متری سعدی</p></div>'}
+function cta(h){return '<div class="card"><h3>جهت اطلاع از قیمت، تماس بگیرید</h3><div class="tel"><span class="nm">کمال زاده</span>'+(h?'<a class="nu" href="tel:09123603403">09123603403</a></div>':'<span class="nu">09123603403</span></div><div class="btns"><a href="tel:09123603403">تماس با ما</a><a class="alt" href="https://instagram.com/makhzan_kamalzadeh" target="_blank" rel="noopener">اینستاگرام ما</a></div>')+'<p class="info">ساعت کاری: ۹ صبح تا ۶ بعدازظهر</p><p class="info">آدرس: کرج، جاده قزلحصار، نبش ۱۶ متری سعدی</p></div>'}
 var IC={a:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',b:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>',c:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-2 5 2-1.5-7"/>'};
 var IMG_STD="https://cdn.imgurl.ir/uploads/x262807_IMG_20261006_160046.jpg",IMG_APL="https://cdn.imgurl.ir/uploads/n587317_IMG_20261006_160215.jpg";
 function pic(u,t){return '<img src="'+u+'" alt="'+t+'" onerror="this.style.display=\'none\'">'}
@@ -196,7 +205,6 @@ app.innerHTML='<h1 class="sr">مخزن آب کمال زاده</h1><div class="ba
 '<div class="feat">'+f("a","۱۲ سال گارانتی تعویض")+f("b","سه لایه و ضد جلبک")+'<div class="f">'+pic(IMG_STD,"استاندارد")+'استاندارد</div><div class="f">'+pic(IMG_APL,"سیب سلامت")+'سیب سلامت</div>'+'</div>'+about()+
 '<div class="card"><h3>مخزن مناسب مکان شما کدام است؟</h3><p>لطفاً طول، عرض و ارتفاع مکان نصب را وارد نمایید تا مناسب‌ترین مخزن را به شما پیشنهاد دهیم.</p><button class="go" id="gc">ماشین‌حساب انتخاب مخزن</button></div>'+
 '<div id="cats">'+sh("Water Tank Categories","انواع مخازن")+'</div>'+catGrid()+acc()+buy()+
-cta()+
 '<div class="why"></div>'+
 '<div class="stats"><div class="stat"><b dir="ltr">12 years</b><span dir="ltr">guarantee</span></div><div class="stat"><b dir="ltr">3 layers</b><span dir="ltr">Anti-algae</span></div><div class="stat">'+pic(IMG_STD,"استاندارد")+'<b>استاندارد</b></div><div class="stat">'+pic(IMG_APL,"سیب سلامت")+'<b>سیب سلامت</b></div></div>';
 app.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){nav("#/"+b.dataset.id)}});
@@ -263,6 +271,12 @@ function menu(o){bg.setAttribute("aria-expanded",o);drw.classList.toggle("on",o)
 bg.onclick=function(){menu(true)};gi("dx").onclick=function(){menu(false)};ov.onclick=function(){menu(false)};
 drw.querySelectorAll(".mi").forEach(function(a){a.onclick=function(){menu(false)}});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&drw.classList.contains("on"))menu(false)});
+var tp=document.querySelector(".top"),ly=window.pageYOffset||0,tk=false;
+window.addEventListener("scroll",function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;
+var y=window.pageYOffset||0,d=y-ly;
+if(y<=10||d<-4||drw.classList.contains("on"))tp.classList.remove("hide");
+else if(d>4&&y>tp.offsetHeight)tp.classList.add("hide");
+ly=y})},{passive:true});
 function nav(h){try{location.hash=h}catch(e){}if(location.hash!==h)route(h)}
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#/"]');if(a){e.preventDefault();nav(a.getAttribute("href"))}});
 function route(h){

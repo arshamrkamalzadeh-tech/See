@@ -150,13 +150,35 @@ footer small{opacity:.75}
 a.nu{text-decoration:none}
 .top{position:sticky;top:0;z-index:80;transition:transform .3s ease}
 .top.hide{transform:translateY(-115%)}
-@media (prefers-reduced-motion:reduce){.top{transition:none}}
+.pm{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;color:var(--ink);font-weight:800;font-size:16px;padding:12px 14px;border-radius:14px;border-bottom:1px solid var(--line);-webkit-tap-highlight-color:transparent}
+.pm:hover,.pm:active{background:var(--sky-l)}
+.pm:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.pm svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.pm[aria-expanded="true"]{color:var(--sky-d);background:var(--sky-l);border-bottom-color:transparent}
+.pm[aria-expanded="true"] svg{transform:rotate(180deg)}
+.sm{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;border-bottom:1px solid var(--line)}
+.pm[aria-expanded="true"]+.sm{grid-template-rows:1fr}
+.sm>div{overflow:hidden}
+.mi.sub{font-size:15px;padding:11px 28px 11px 14px;border-bottom:0;margin-top:2px;position:relative}
+.mi.sub::before{content:"";position:absolute;right:12px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--sky)}
+.sm>div>.mi.sub:last-child{margin-bottom:6px}
+.vt{max-width:968px;margin:18px auto 0}
+.vtv{overflow:hidden;border-radius:22px;aspect-ratio:16/9;background:var(--navy);box-shadow:0 10px 26px rgba(11,34,54,.18);touch-action:pan-y}
+.vtt{display:flex;height:100%;transition:transform .6s ease}
+.vtt img{flex:none;width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none;user-select:none}
+.vtd{display:flex;justify-content:center;gap:4px;margin-top:6px}
+.vtd button{all:unset;cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.vtd button::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--line);transition:background .3s,transform .3s}
+.vtd button[aria-current="true"]::before{background:var(--sky-d);transform:scale(1.25)}
+.vtd button:focus-visible{outline:3px solid var(--sky);border-radius:50%}
+@media (prefers-reduced-motion:reduce){.vtt,.vtd button::before{transition:none}}
+@media (prefers-reduced-motion:reduce){.top{transition:none}.sm,.pm svg{transition:none}}
 </style>
 </head>
 <body>
 <header class="top"><div class="w"><div class="row"><div class="rt"><button class="burger" id="bg" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="drw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h9"/></svg></button><a class="brand" href="#/"><img class="lg" id="l1" alt="لوگوی مخزن آب کمال زاده"><span>مخزن آب کمال زاده</span></a></div><div id="st" class="st" role="status" hidden></div></div></div></header>
 <div class="ov" id="ov"></div>
-<aside class="drw" id="drw" aria-label="منوی سایت" aria-hidden="true"><div class="dh"><span>منو</span><button class="dx" id="dx" type="button" aria-label="بستن منو"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div><nav><a class="mi" href="#/">صفحه اصلی</a><a class="mi" href="#/tanks">مخازن</a><a class="mi" href="#/calc">ماشین‌حساب انتخاب مخزن</a><a class="mi" href="#/acc">فیتینگ و شناور</a><a class="mi" href="#/learn">آموزش‌ها</a><a class="mi" href="#/faq">سوالات متداول</a></nav></aside>
+<aside class="drw" id="drw" aria-label="منوی سایت" aria-hidden="true"><div class="dh"><span>منو</span><button class="dx" id="dx" type="button" aria-label="بستن منو"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div><nav><a class="mi" href="#/">صفحه اصلی</a><button class="mi pm" id="pm" type="button" aria-expanded="false" aria-controls="sm"><span>محصولات</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sm" id="sm"><div><a class="mi sub" href="#/tanks">مخازن</a><a class="mi sub" href="#/acc">فیتینگ و شناور</a></div></div><a class="mi" href="#/calc">ماشین‌حساب انتخاب مخزن</a><a class="mi" href="#/learn">آموزش‌ها</a><a class="mi" href="#/faq">سوالات متداول</a></nav></aside>
 <div id="app" class="w"></div>
 <footer><small>کلیه حقوق برای مخزن آب کمال زاده محفوظ است.</small></footer>
 <script>
@@ -200,16 +222,36 @@ function about(){return sh("About Us","درباره ما")+'<div class="ab"><div
 '</div><button class="abb" id="abb" aria-expanded="false" aria-controls="abt"><span id="abl">نمایش متن</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button></div></div>'}
 function bindAbout(){var t=gi("abt"),b=gi("abb");if(!t||!b)return;
 b.onclick=function(){var o=t.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");gi("abl").textContent=o?"بستن متن":"نمایش متن";t.style.maxHeight=o?t.scrollHeight+"px":""}}
+var VT=["https://cdn.imgurl.ir/uploads/r97554_file_00000000a5488210b16c372f5c02371c.png","https://cdn.imgurl.ir/uploads/88_file_000000003cf08243824410d462ad0c16.png","https://cdn.imgurl.ir/uploads/n59148_file_0000000043348210af40173fde8c04a6.png"],tm=null;
+function showcase(){return '<div class="vt" dir="ltr" role="region" aria-roledescription="carousel" aria-label="ویترین"><div class="vtv" id="vtv"><div class="vtt" id="vtt">'+VT.concat([VT[0]]).map(function(u,i){return '<img src="'+u+'" alt="'+(i<VT.length?'اسلاید '+fa(i+1):'')+'"'+(i>=VT.length?' aria-hidden="true"':'')+' draggable="false">'}).join("")+'</div></div><div class="vtd">'+VT.map(function(u,i){return '<button type="button" data-i="'+i+'" aria-label="اسلاید '+fa(i+1)+'"></button>'}).join("")+'</div></div>'}
+function bindShow(){
+var t=gi("vtt"),v=gi("vtv");if(!t||!v)return;
+var n=VT.length,i=0,ds=app.querySelectorAll(".vtd button"),x0=null;
+var first=t.firstChild;
+function fit(){if(first.naturalWidth&&first.naturalHeight)v.style.aspectRatio=first.naturalWidth+" / "+first.naturalHeight}
+if(first.complete)fit();else first.onload=fit;
+function mark(){ds.forEach(function(d,k){d.setAttribute("aria-current",k===i%n?"true":"false")})}
+function go(k,anim){i=k;t.style.transition=anim?"":"none";t.style.transform="translateX("+(-100*i)+"%)";mark()}
+function next(){if(i>=n)go(0,false);void t.offsetWidth;go(i+1,true);if(i===n)setTimeout(function(){if(i===n)go(0,false)},700)}
+function prev(){if(i<=0){go(n,false);void t.offsetWidth}go(i-1,true)}
+function start(){stop();tm=setInterval(next,5000)}
+function stop(){if(tm){clearInterval(tm);tm=null}}
+ds.forEach(function(d){d.onclick=function(){go(+d.dataset.i,true);start()}});
+v.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;stop()},{passive:true});
+v.addEventListener("touchend",function(e){if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(dx<-40)next();else if(dx>40)prev();x0=null}start()},{passive:true});
+v.addEventListener("mouseenter",stop);v.addEventListener("mouseleave",start);
+mark();start();
+}
 function home(){
 app.innerHTML='<h1 class="sr">مخزن آب کمال زاده</h1><div class="banner"></div>'+
-'<div class="feat">'+f("a","۱۲ سال گارانتی تعویض")+f("b","سه لایه و ضد جلبک")+'<div class="f">'+pic(IMG_STD,"استاندارد")+'استاندارد</div><div class="f">'+pic(IMG_APL,"سیب سلامت")+'سیب سلامت</div>'+'</div>'+about()+
+'<div class="feat">'+f("a","۱۲ سال گارانتی تعویض")+f("b","سه لایه و ضد جلبک")+'<div class="f">'+pic(IMG_STD,"استاندارد")+'استاندارد</div><div class="f">'+pic(IMG_APL,"سیب سلامت")+'سیب سلامت</div>'+'</div>'+showcase()+about()+
 '<div class="card"><h3>مخزن مناسب مکان شما کدام است؟</h3><p>لطفاً طول، عرض و ارتفاع مکان نصب را وارد نمایید تا مناسب‌ترین مخزن را به شما پیشنهاد دهیم.</p><button class="go" id="gc">ماشین‌حساب انتخاب مخزن</button></div>'+
-'<div id="cats">'+sh("Water Tank Categories","انواع مخازن")+'</div>'+catGrid()+acc()+buy()+
+buy()+
 '<div class="why"></div>'+
 '<div class="stats"><div class="stat"><b dir="ltr">12 years</b><span dir="ltr">guarantee</span></div><div class="stat"><b dir="ltr">3 layers</b><span dir="ltr">Anti-algae</span></div><div class="stat">'+pic(IMG_STD,"استاندارد")+'<b>استاندارد</b></div><div class="stat">'+pic(IMG_APL,"سیب سلامت")+'<b>سیب سلامت</b></div></div>';
 app.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){nav("#/"+b.dataset.id)}});
 gi("gc").onclick=function(){nav("#/calc")};
-bindAbout();
+bindAbout();bindShow();
 }
 function num(v){return parseFloat(String(v).replace(/[۰-۹]/g,function(d){return "۰۱۲۳۴۵۶۷۸۹".indexOf(d)}).replace("٫","."))}
 function dim(s,r){return (s.d?'قطر '+fa(r[1]):'طول '+fa(r[1])+' × عرض '+fa(r[2]))+' × ارتفاع '+fa(r[3])+' سانتی‌متر'}
@@ -266,10 +308,12 @@ app.querySelectorAll(".fq").forEach(function(b){b.onclick=function(){b.setAttrib
 function faqPage(){accPg("FAQ","سوالات متداول",FQ.map(function(x){return {q:x.q,h:'<p>'+x.a+'</p>'}}))}
 var LN=[{q:"آموزش نصب",h:'<p>توجه به نکاتی که در نصب مخزن‌های آب می‌باشد بسیار ضروری و از الزامات می‌باشد به طوری که هر فرد با تجربه در این زمینه به خوبی از این نکات آگاهی دارد و می‌داند که بایستی از این نکات پیروی کند. از آن جایی که نصب مخازن آب یک کار تخصصی بوده، توصیه می‌شود که بهترین و با کیفیت‌ترین مخزن آب را جهت استفاده و نصب خریداری نمایید. یکی از بهترین مدل‌های منبع‌های آب، مخزن آب پلی‌اتیلن می‌باشد که با داشتن مقاومت بسیار بالا و هم‌چنین نصب راحت می‌تواند گزینه بسیار ایده‌آلی برای خرید شما باشد. شما می‌توانید فیلترهای مورد نظر خود را در ورودی آب به مخزن نصب کنید که در این صورت تعویض و تمیز کردن فیلترها نیز به راحتی امکان‌پذیر خواهد بود. در ادامه به نکاتی که بایستی در نصب منبع آب رعایت شود اشاره شده است:</p><ul><li>از یخ‌زدگی پمپ در فصول سرد جلوگیری نمایید.</li><li>بازدیدهای ادواری از مخزن و تاسیسات را جدی گرفته و به هیچ وجه فراموش نکنید.</li><li>در صورت نیاز با توجه به ابعاد مخزن‌تان می‌توانید پایه مخزن مناسبی را تدارک ببینید.</li><li>قطر فیتینگ و لوله خروجی از مخزن می‌بایست برابر یا بیشتر از ورودی پمپ آب باشد.</li><li>توصیه می‌شود پمپ و مخزن را در یک مکان بسته و سرپوشیده مانند اتاق تاسیسات نصب کنید.</li><li>مخزن را در مکانی که به دور از جریان الکتریسیته باشد نصب کنید تا مانع از وقوع اتفاقات ناگوار باشید.</li><li>قبل از نصب بایستی محل و مکان نصب مخزن را مشخص کنید؛ طبیعتاً این مکان باید پاسخگوی ابعاد و اندازه مخزن‌تان باشد.</li><li>در نصب تانکر آب سعی کنید طبق اصول و استانداردها عمل نمایید تا بتوانید از گارانتی و ضمانت‌نامه مخزن آب خریداری‌شده بهره‌مند شوید.</li></ul><img src="https://cdn.imgurl.ir/uploads/c53621_IMG_20261006_192805.jpg" alt="آموزش نصب مخزن آب" loading="lazy" onerror="this.style.display=\'none\'">'}];
 function learnPage(){accPg("Tutorials","آموزش‌ها",LN)}
-var bg=gi("bg"),ov=gi("ov"),drw=gi("drw");
-function menu(o){bg.setAttribute("aria-expanded",o);drw.classList.toggle("on",o);ov.classList.toggle("on",o);drw.setAttribute("aria-hidden",o?"false":"true");if(o)gi("dx").focus();else if(document.activeElement&&drw.contains(document.activeElement))bg.focus()}
+var bg=gi("bg"),ov=gi("ov"),drw=gi("drw"),pb=gi("pm");
+function pm(o){pb.setAttribute("aria-expanded",o?"true":"false")}
+pb.onclick=function(){pm(pb.getAttribute("aria-expanded")!=="true")};
+function menu(o){if(!o)pm(false);bg.setAttribute("aria-expanded",o);drw.classList.toggle("on",o);ov.classList.toggle("on",o);drw.setAttribute("aria-hidden",o?"false":"true");if(o)gi("dx").focus();else if(document.activeElement&&drw.contains(document.activeElement))bg.focus()}
 bg.onclick=function(){menu(true)};gi("dx").onclick=function(){menu(false)};ov.onclick=function(){menu(false)};
-drw.querySelectorAll(".mi").forEach(function(a){a.onclick=function(){menu(false)}});
+drw.querySelectorAll("a.mi").forEach(function(a){a.onclick=function(){menu(false)}});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&drw.classList.contains("on"))menu(false)});
 var tp=document.querySelector(".top"),ly=window.pageYOffset||0,tk=false;
 window.addEventListener("scroll",function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;
@@ -281,7 +325,7 @@ function nav(h){try{location.hash=h}catch(e){}if(location.hash!==h)route(h)}
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#/"]');if(a){e.preventDefault();nav(a.getAttribute("href"))}});
 function route(h){
 var id=(typeof h==="string"?h:location.hash).replace("#/",""),s=D.filter(function(x){return x.id===id})[0];
-sel=0;window.scrollTo(0,0);menu(false);
+if(tm){clearInterval(tm);tm=null}sel=0;window.scrollTo(0,0);menu(false);
 if(id==="faq"){faqPage();return}
 if(id==="learn"){learnPage();return}
 if(id==="calc"){calc();return}
@@ -289,7 +333,7 @@ if(id==="acc"){accPage();return}
 if(id==="tanks"){tanksPage();return}
 if(s){detail(s);return}
 home();
-if(id==="cats")gi(id).scrollIntoView();
+
 }
 function stat(){
 var el=gi("st");

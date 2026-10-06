@@ -141,8 +141,8 @@ var IC={a:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 
 var IMG_STD="https://cdn.imgurl.ir/uploads/x262807_IMG_20261006_160046.jpg",IMG_APL="https://cdn.imgurl.ir/uploads/n587317_IMG_20261006_160215.jpg";
 function pic(u,t){return '<img src="'+u+'" alt="'+t+'" onerror="this.style.display=\'none\'">'}
 function f(k,t){return '<div class="f"><svg viewBox="0 0 24 24">'+IC[k]+'</svg>'+t+'</div>'}
-var A=[{n:1,t:"فیتینگ‌ها",img:"https://cdn.imgurl.ir/uploads/w747780_Screenshot_2026-10-06-15-52-49-765_com.google.android.googlequicksearchbox-edit.jpg",v:[2,2.5,3,4,5,6]},{n:1,t:"شناور برنجی",img:"https://cdn.imgurl.ir/uploads/m88598_Screenshot_2026-10-06-15-50-04-106_com.google.android.googlequicksearchbox-edit.jpg",v:[2,2.5,3]}];
-function acc(){return '<div id="acc">'+sh("Fittings","فیتینگ‌ها و شناور برنجی")+'</div><div class="accs">'+A.map(function(a){return '<div class="acc">'+img(a,"")+'<h3>'+a.t+'</h3><p>سایزها</p><div class="chips">'+a.v.map(function(x){return '<b>'+fa(x)+'</b>'}).join("")+'</div></div>'}).join("")+'</div>'}
+var A=[{n:1,t:"فیتینگ",img:"https://cdn.imgurl.ir/uploads/w747780_Screenshot_2026-10-06-15-52-49-765_com.google.android.googlequicksearchbox-edit.jpg",v:[2,2.5,3,4,5,6]},{n:1,t:"شناور برنجی",img:"https://cdn.imgurl.ir/uploads/m88598_Screenshot_2026-10-06-15-50-04-106_com.google.android.googlequicksearchbox-edit.jpg",v:[2,2.5,3]}];
+function acc(){return '<div id="acc">'+sh("Fittings","فیتینگ و شناور برنجی")+'</div><div class="accs">'+A.map(function(a){return '<div class="acc">'+img(a,"")+'<h3>'+a.t+'</h3><p>سایز</p><div class="chips">'+a.v.map(function(x){return '<b>'+fa(x)+'</b>'}).join("")+'</div></div>'}).join("")+'</div>'}
 function buy(){return sh("Ways to Buy","روش‌های خرید")+'<div class="accs"><div class="buy"><h3>خرید حضوری</h3><p>با مراجعه به فروشگاه در ساعت کاری ۹ صبح تا ۶ بعدازظهر، به نشانی کرج، جاده قزلحصار، نبش ۱۶ متری سعدی، مخزن مورد نظر خود را از نزدیک ببینید و خریداری کنید.</p><div class="btns"><a href="https://nshn.ir/077bv56hyxvQXe" target="_blank" rel="noopener">مسیریابی تا فروشگاه</a></div></div><div class="buy"><h3>خرید غیرحضوری</h3><p>بدون مراجعه به فروشگاه، از طریق تماس تلفنی یا پیام در اینستاگرام، مدل و حجم مورد نظر را سفارش دهید.</p><div class="btns"><a href="tel:09123603403">تماس با ما</a><a class="alt" href="https://instagram.com/makhzan_kamalzadeh" target="_blank" rel="noopener">اینستاگرام ما</a></div></div></div>'}
 function catGrid(){return '<div class="grid">'+D.map(function(s){return '<button class="cat" data-id="'+s.id+'">'+img(s,"")+'<span>'+s.t+'</span></button>'}).join("")+'</div>'}
 function tanksPage(){
@@ -167,7 +167,7 @@ app.innerHTML='<h1 class="sr">مخزن آب کمال زاده</h1><div class="ba
 '<div id="cats">'+sh("Water Tank Categories","انواع مخازن")+'</div>'+catGrid()+acc()+buy()+
 cta()+
 '<div class="why"></div>'+
-'<div class="stats"><div class="stat"><b dir="ltr">12 years</b><span dir="ltr">guarantee</span></div><div class="stat"><b dir="ltr">3 layers</b><span>ضد جلبک</span></div><div class="stat">'+pic(IMG_STD,"استاندارد")+'<b>استاندارد</b></div><div class="stat">'+pic(IMG_APL,"سیب سلامت")+'<b>سیب سلامت</b></div></div>';
+'<div class="stats"><div class="stat"><b dir="ltr">12 years</b><span dir="ltr">guarantee</span></div><div class="stat"><b dir="ltr">3 layers</b><span dir="ltr">Anti-algae</span></div><div class="stat">'+pic(IMG_STD,"استاندارد")+'<b>استاندارد</b></div><div class="stat">'+pic(IMG_APL,"سیب سلامت")+'<b>سیب سلامت</b></div></div>';
 app.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){location.hash="#/"+b.dataset.id}});
 gi("gc").onclick=function(){location.hash="#/calc"};
 bindAbout();
